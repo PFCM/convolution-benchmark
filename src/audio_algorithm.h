@@ -6,6 +6,6 @@ Base processing algorithm
 class Algorithm {
 public:
   virtual void tick(const float *in, float *out, unsigned long blocksize) {
-    std::memcpy(out, in, blocksize);
+    std::memcpy(out, in, blocksize * sizeof(float));
   }
 };

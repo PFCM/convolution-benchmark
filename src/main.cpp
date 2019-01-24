@@ -43,15 +43,19 @@ void process_file(sf_count_t block_size, SF_INFO *in_info, SNDFILE *input,
   float *input_buffer = new float[block_size];
   float *output_buffer = new float[block_size];
   sf_count_t samples_read = block_size;
+  sf_count_t blocks = 0;
   while (samples_read == block_size) {
     samples_read = sf_readf_float(input, input_buffer, block_size);
     if (samples_read) {
-      scale_float_buffer(input_buffer, samples_read, 24);
+      // scale_float_buffer(input_buffer, samples_read, 24);
+
       processor->tick(input_buffer, output_buffer, samples_read);
-      unscale_float_buffer(output_buffer, samples_read, 24);
+      blocks++;
+      // unscale_float_buffer(output_buffer, samples_read, 24);
       sf_writef_float(output, output_buffer, samples_read);
     }
   }
+  std::cout << "processing complete after " << blocks << " blocks";
 
   delete[] input_buffer;
   delete[] output_buffer;
