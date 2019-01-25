@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 
 project(convolutions)
 
+set(CMAKE_CXX_STANDARD 11)
+
 include_directories(./include ./src /usr/local/include)
 find_package(gflags REQUIRED)
 

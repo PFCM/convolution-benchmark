@@ -1,7 +1,10 @@
 /*
 Base processing algorithm
 */
+#ifndef AUDIO_ALGORITHM
+#define AUDIO_ALGORITHM
 #include <memory>
+#include <string>
 
 class Algorithm {
 public:
@@ -13,4 +16,7 @@ public:
     std::memcpy(out, in, blocksize * sizeof(float));
     return false;
   }
+
+  std::string name = "identity";
 };
+#endif
